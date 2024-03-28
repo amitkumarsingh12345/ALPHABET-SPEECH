@@ -1,0 +1,66 @@
+<html>
+<head>
+    <style>
+        .maindiv{
+            height:100%;
+            width:100%;
+        }.maindiv div{
+            height:100%;
+            width:49.78%;
+            float:left;
+            color:blue; 
+            justify-content:center;
+            align-items: center;
+            text-align:center;
+            display: flex;
+            font-size:700px;
+            box-shadow:0px 0px 10px gray;
+        }.maindiv div img{
+            height:100%;
+            width:100%;
+            transition:5s;
+        }#divText{
+            background-image:url(iicsword.jpg);
+            background-size:100% 100%;
+        }
+    </style>
+</head>
+<body bgcolor="skyblue">
+    <div class="mainDiv">
+        <div id="divText"></div>
+        <div><img src="iics.jpg" id="img"></div>
+    </div>
+</body>
+
+    <script>
+        var alf = "abcdefghijklmnopqrstuvwxyz",i=0;
+        var closeTime = window.setInterval(function(){
+            var cot;
+            document.getElementById("divText").style.background = 'none';
+            var image=["apple","boy","cat","dog","elephant","fish","grapes","hen","inkpot","jug","kite","lion","mango","nest","orange","parrot","queen","rabit","ship","tiger","umbrella","van","watch","x-mas tree","yak","zebra"];                      
+            var ch = alf[i]; 
+            if(alf[i]>='a'&&alf[i]<='z')
+                ch = (alf[i]).toUpperCase();
+            image.forEach(function(data){
+                if((data[0].toUpperCase())==ch){
+                  img.src=data+'.jpg';
+                  var sp = document.getElementById("divText").innerText=ch;
+                  cot = sp+" for "+data; 
+                } 
+            });
+            
+            
+            if(speechSynthesis){
+                var vls = new SpeechSynthesisUtterance();
+                vls.language="en-us";
+                vls.text=cot;
+                vls.volume=1;
+                vls.rate=0.67;
+                vls.pitch=1;
+                window.speechSynthesis.speak(vls);
+            }
+            if(i++==25)
+               clearInterval(closeTime);
+         },3000);     
+    </script>
+</html>
